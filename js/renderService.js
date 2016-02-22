@@ -1,8 +1,8 @@
 angular.module('moneyRenderer', ['howMuch'])
     .factory('RenderService', function(MoneyService) {
-        return function(billType, stackOrientation, comparator) {
+        return function(currency, currencyIndex, stackOrientation, comparator) {
            var money, money2;
-        var billSize =  MoneyService.bills[billType];
+        var billSize =  MoneyService.bills[currency][currencyIndex];
         
         var sizeOpts = {
             stacked: {
@@ -11,6 +11,7 @@ angular.module('moneyRenderer', ['howMuch'])
                 depth: billSize.width
             }
         };
+        console.log(comparator);
      window.addEventListener('DOMContentLoaded', function(){
         var canvas = document.getElementById('theMoney');
         var engine = new BABYLON.Engine(canvas, true);
@@ -58,7 +59,7 @@ angular.module('moneyRenderer', ['howMuch'])
             ******************************/
             BABYLON.SceneLoader.ImportMesh("", "meshes/", selectedMesh, scene, function(addedMeshes) {
                 var height = addedMeshes[0].getBoundingInfo().boundingBox;
-                addedMeshes.scaling
+                // addedMeshes.scaling
                 console.log(height);
             });
             
