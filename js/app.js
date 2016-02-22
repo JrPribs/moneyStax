@@ -3,8 +3,9 @@ angular.module('howMuch', ['moneyRenderer', 'ui.bootstrap'])
         $scope.currency = 'us';
         $scope.currencyIndex = 0;
         $scope.stackOrientation = 'stacked';
-        $scope.comparator = CompareService.people.man.in;
-        RenderService($scope.currency, $scope.currencyIndex, $scope.stackOrientation, $scope.comparator);
+        $scope.comparator = 'man';
+        $scope.compareSize = CompareService.man.in;
+        RenderService($scope.currency, $scope.currencyIndex, $scope.stackOrientation, $scope.compareSize);
         $scope.bills = MoneyService.bills;
         $scope.coins = MoneyService.coins;
         $scope.setCurrency = function(currency) {
@@ -97,12 +98,10 @@ angular.module('howMuch', ['moneyRenderer', 'ui.bootstrap'])
     })
     .factory('CompareService', function() {
           var service = {
-                people: {
-                    man: {
-                        in: 69.7,
-                        ft: 5.83,
-                        cm: 177
-                    }
+                man: {
+                    in: 69.7,
+                    ft: 5.83,
+                    cm: 177
                 }
           };
           return service;

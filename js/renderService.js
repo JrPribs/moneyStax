@@ -26,7 +26,7 @@ angular.module('moneyRenderer', ['howMuch'])
     
         function createScene(selectedMesh, orient){
             var scene = new BABYLON.Scene(engine);
-            var camera = new BABYLON.ArcRotateCamera("Camera", 0, 2, -75, BABYLON.Vector3.Zero(0,1,100), scene);
+            var camera = new BABYLON.ArcRotateCamera("Camera", 0, 2, -75, BABYLON.Vector3.Zero(0,1,0), scene);
             camera.attachControl(canvas, true);
             var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
     
