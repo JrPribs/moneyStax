@@ -10,35 +10,63 @@
 <![endif]-->
 <link rel="stylesheet" href="css/styles.css" type="text/css" media="all" />
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-<script src="js/yen.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/ui-bootstrap-1.1.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="http://cdn.babylonjs.com/2-3/babylon.js"></script>
+<script src="js/app.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/renderService.js" type="text/javascript" charset="utf-8"></script>
 </head>
-<body class="html">
-    <div class="page-header">
-        <h1>How Much Money? <small>see how much it really is</small></h1>
-    </div>
+<body ng-controller="moneyCtrl">
     <div class="container-fluid">
-    <div class="row">
-    <div class="col-sm-4">
-        <div ng-controller="moneyCtrl" class="nav nav-pills nav-stacked">
+        <div class="page-header">
+            <h1>How Much Money? <small>see how much it really is</small></h1>
+        </div>
         <div class="row">
-            <div ng-repeat="yen in yens">
-                <div class="col-sm-6">
-                    <a href="#" class="thumbnail">
-                        <img ng-src="{{yen.image1}}" />
-                    </a>
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <uib-tabset type="tabs">
+                            <uib-tab heading="US">
+                                <div class="nav nav-pills nav-stacked">
+                                    <div class="row">
+                                        <div ng-repeat="bill in bills">
+                                            <div class="col-sm-6">
+                                                <a href="#" class="thumbnail">
+                                                    <img ng-src="{{yen.image1}}" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </uib-tab>
+                            <uib-tab heading="JAP">
+                                <div class="nav nav-pills nav-stacked">
+                                    <div class="row">
+                                        <div ng-repeat="yen in yens">
+                                            <div class="col-sm-6">
+                                                <a href="#" class="thumbnail">
+                                                    <img ng-src="{{yen.image1}}" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </uib-tab>
+                            <uib-tab heading="EURO"><div ng-include="currenyViews.euro"></div></uib-tab>
+                        </uib-tabset>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default">Man</button>
+                            <button type="button" class="btn btn-default">House</button>
+                            <button type="button" class="btn btn-default"></button>
+                        </div>
+                    </div>
                 </div>
-                </div>
+            </div>
+            <div class="col-sm-8">
+                <canvas id="theMoney"></canvas>
             </div>
         </div>
     </div>
-    <div class="col-sm-8" id="moneyClip">
-        <canvas id="theMoney"></canvas>
-    </div>
-    </div>
-    </div>
-<script src="http://cdn.babylonjs.com/2-3/babylon.js"></script>
-<!-- <script src="js/app.js"></script> -->
-    
 </body>
 </html>

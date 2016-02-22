@@ -1,13 +1,8 @@
 angular.module('moneyRenderer', ['howMuch'])
     .factory('RenderService', function(MoneyService) {
-        return function() {
+        return function(billType, stackOrientation, comparator) {
            var money, money2;
-        var billSize = {
-            length: 6.125,  // inches
-            width: 2.61,    // inches
-            thick: 0.0043,   // inches
-            weight: 1       // grams
-        }
+        var billSize =  MoneyService.bills[billType];
         
         var sizeOpts = {
             stacked: {
@@ -16,16 +11,6 @@ angular.module('moneyRenderer', ['howMuch'])
                 depth: billSize.width
             }
         };
-        
-        var averageMale = {
-            height: {
-                in: 69.7,
-                ft: 5.83,
-                cm: 177
-            }
-        };
-    
-    
      window.addEventListener('DOMContentLoaded', function(){
         var canvas = document.getElementById('theMoney');
         var engine = new BABYLON.Engine(canvas, true);
@@ -72,7 +57,9 @@ angular.module('moneyRenderer', ['howMuch'])
               Compare Mesh Render Handling        
             ******************************/
             BABYLON.SceneLoader.ImportMesh("", "meshes/", selectedMesh, scene, function(addedMeshes) {
-    
+                var height = addedMeshes[0].getBoundingInfo().boundingBox;
+                addedMeshes.scaling
+                console.log(height);
             });
             
             // create a built-in "ground" shape; its constructor takes the same 5 params as the sphere's one
@@ -86,7 +73,7 @@ angular.module('moneyRenderer', ['howMuch'])
         ************************/
         
         function buildStacks() {
-            var compareSize = averageMale.height.in;
+            var compareSize = comparator;
             var billNum = compareSize / billSize['thick'];
             
             for( var i= 0; i< billNum; i++) {
